@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>View Cars</title><link rel="stylesheet" th:href="@{/css/style.css}"></head>
+<body class="app-body"><div class="layout"><div th:replace="~{fragments/sidebar :: sidebar('view')}"></div>
+<main class="main"><header class="topbar"><b>Car Management System</b><a th:href="@{/logout}">Logout</a></header>
+<section class="content"><div class="heading-row"><div><h1>View Cars</h1><p class="muted">List of all added cars</p></div><a class="btn primary" th:href="@{/cars/add}">＋ Add Car</a></div>
+<div class="alert success-msg" th:if="${success}" th:text="${success}"></div>
+<div class="empty-state" th:if="${#lists.isEmpty(cars)}"><div class="car-mark">🚘</div><h3>No cars added yet</h3><p class="muted">Add your first car to see it here.</p><a class="btn primary" th:href="@{/cars/add}">Add Car</a></div>
+<div class="car-list" th:unless="${#lists.isEmpty(cars)}">
+<article class="car-row" th:each="car : ${cars}">
+<div class="car-photo"><img th:if="${car.imageName != null}" th:src="@{'/car-images/' + ${car.imageName}}" alt="Car image"><span th:unless="${car.imageName != null}">🚘</span></div>
+<div class="car-details"><h3 th:text="${car.name}">Swift</h3><p><b>Company:</b> <span th:text="${car.company}"></span></p><p><b>Color:</b> <span th:text="${car.color}"></span></p><p><b>Price:</b> ₹ <span th:text="${#numbers.formatDecimal(car.price, 1, 'COMMA', 2, 'POINT')}"></span></p></div>
+<form th:action="@{'/cars/delete/' + ${car.id}}" method="post" onsubmit="return confirm('Delete this car?')"><button class="btn danger" type="submit">Delete</button></form>
+</article></div></section></main></div></body></html>

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<aside class="sidebar" th:fragment="sidebar(active)">
+  <div class="brand">🚘 <span>Car Manager</span></div>
+  <a th:classappend="${active == 'dashboard'} ? ' active'" th:href="@{/dashboard}">▦ &nbsp; Dashboard</a>
+  <a th:classappend="${active == 'add'} ? ' active'" th:href="@{/cars/add}">🚘 &nbsp; Add Car</a>
+  <a th:classappend="${active == 'view'} ? ' active'" th:href="@{/cars}">☷ &nbsp; View Cars</a>
+  <a class="logout" th:href="@{/logout}">↪ &nbsp; Logout</a>
+</aside>
+</body></html>

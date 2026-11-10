@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dashboard</title><link rel="stylesheet" th:href="@{/css/style.css}"></head>
+<body class="app-body">
+<div class="layout"><div th:replace="~{fragments/sidebar :: sidebar('dashboard')}"></div>
+<main class="main"><header class="topbar"><b>Car Management System</b><span th:text="'Welcome, ' + ${username}">Welcome, Admin</span></header>
+<section class="content"><h1>Dashboard</h1><p class="muted">Manage your cars from here</p>
+<div class="stats"><div class="stat"><span>Total Cars</span><strong th:text="${carCount}">0</strong></div></div>
+<div class="action-grid">
+<a class="action-card green" th:href="@{/cars/add}"><span class="action-icon">🚘</span><span><b>Add Car</b><small>Add a new car to the system</small></span><strong>›</strong></a>
+<a class="action-card blue" th:href="@{/cars}"><span class="action-icon">▤</span><span><b>View Cars</b><small>View all added cars</small></span><strong>›</strong></a>
+</div></section></main></div></body></html>
